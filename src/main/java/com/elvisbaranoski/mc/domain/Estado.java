@@ -21,7 +21,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @EqualsAndHashCode
-
 @NoArgsConstructor
 @ToString
 @Entity

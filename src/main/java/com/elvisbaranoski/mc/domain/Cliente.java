@@ -40,6 +40,20 @@ public class Cliente implements Serializable{
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos= new ArrayList<>();
+	
+	
+	
+	/* Associação(entidade fraca)- optado fazer uma coleção pois telefone teria só um atributo
+	 *  e não aceitara repetição de telefone*/
+
+
+	@ElementCollection
+	@CollectionTable(name ="TELEFONE")
+	private Set<String> telefones = new HashSet<>();
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos= new ArrayList<>();
+	
 		
 	public Cliente(Long id, String nome, String email,String cpfOuCnpj, TipoCliente tipo) {
 		super();
@@ -106,6 +120,14 @@ public class Cliente implements Serializable{
 		this.telefones = telefones;
 	}
 
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	
+	}
 	
 	@Override
 	public int hashCode() {
@@ -135,12 +157,4 @@ public class Cliente implements Serializable{
 	}
 
 
-
-	/* Associação(entidade fraca)- optado fazer uma coleção pois telefone teria só um atributo
-	 *  e não aceitara repetição de telefone*/
-
-
-	@ElementCollection
-	@CollectionTable(name ="TELEFONE")
-	private Set<String> telefones = new HashSet<>();
 }
