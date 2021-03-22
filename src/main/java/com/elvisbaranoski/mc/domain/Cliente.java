@@ -15,8 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.elvisbaranoski.mc.domain.enuns.TipoCliente;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -36,12 +35,8 @@ public class Cliente implements Serializable{
 	private String cpfOuCnpj;
 	private Integer tipo;
 
-
-	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos= new ArrayList<>();
-
-
 
 	/* Associação(entidade fraca)- optado fazer uma coleção pois telefone teria só um atributo
 	 *  e não aceitara repetição de telefone*/
@@ -51,7 +46,7 @@ public class Cliente implements Serializable{
 	@CollectionTable(name ="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos= new ArrayList<>();
 

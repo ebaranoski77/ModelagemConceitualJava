@@ -17,8 +17,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -34,11 +32,9 @@ public class Pedido implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date instante;
 
-	@JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL, mappedBy="pedido")
 	private Pagamento pagamento;
 
-	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")//chave estrangeira
 	private Cliente cliente;
