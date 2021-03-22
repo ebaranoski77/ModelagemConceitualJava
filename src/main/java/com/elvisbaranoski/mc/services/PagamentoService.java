@@ -13,13 +13,13 @@ import javassist.tools.rmi.ObjectNotFoundException;
 public class PagamentoService {
 	@Autowired
 	private PagamentoRepository repository;
-	
+
 	public Pagamento buscar(Long id) throws ObjectNotFoundException  {
 		Optional<Pagamento> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Pagamento.class.getName()));
-		}
-	
-	
+	}
+
+
 
 }

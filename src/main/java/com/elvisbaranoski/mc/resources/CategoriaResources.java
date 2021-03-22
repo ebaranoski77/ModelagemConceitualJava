@@ -23,15 +23,15 @@ public class CategoriaResources{
 	public ResponseEntity<?>find(@PathVariable Long id) throws ObjectNotFoundException{
 		Categoria obj=service.buscar(id);
 		return ResponseEntity.ok().body(obj);
-	    
-	      
-	      
-	    
-	    
-		}
-	
+
+
+
+
+
 	}
-	
+
+}
+
 
 
 

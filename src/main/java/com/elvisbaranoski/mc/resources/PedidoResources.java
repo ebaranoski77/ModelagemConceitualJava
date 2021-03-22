@@ -23,11 +23,11 @@ public class PedidoResources{
 	public ResponseEntity<?>find(@PathVariable Long id) throws ObjectNotFoundException{
 		Pedido obj=service.buscar(id);
 		return ResponseEntity.ok().body(obj);    
-	    
-		}
-	
+
 	}
-	
+
+}
+
 
 
 

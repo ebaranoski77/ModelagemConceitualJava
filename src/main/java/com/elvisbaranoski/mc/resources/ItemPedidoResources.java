@@ -7,22 +7,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.elvisbaranoski.mc.domain.Produto;
-import com.elvisbaranoski.mc.services.ProdutoService;
+import com.elvisbaranoski.mc.domain.ItemPedido;
+import com.elvisbaranoski.mc.services.ItemPedidoService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
-@RequestMapping(value = "/produtos")
+@RequestMapping(value = "/itempedidos")
 
 
-public class ProdutoResources{
+public class ItemPedidoResources{
 	@Autowired
-	private ProdutoService service;
+	private ItemPedidoService service;
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?>find(@PathVariable Long id) throws ObjectNotFoundException{
-		Produto obj=service.buscar(id);
-		return ResponseEntity.ok().body(obj);	    
+		ItemPedido obj=service.buscar(id);
+		return ResponseEntity.ok().body(obj);    
 
 	}
 

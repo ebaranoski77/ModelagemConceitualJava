@@ -23,11 +23,11 @@ public class PagamentoResources{
 	public ResponseEntity<?>find(@PathVariable Long id) throws ObjectNotFoundException{
 		Pagamento obj=service.buscar(id);
 		return ResponseEntity.ok().body(obj);    
-	    
-		}
-	
+
 	}
-	
+
+}
+
 
 
 

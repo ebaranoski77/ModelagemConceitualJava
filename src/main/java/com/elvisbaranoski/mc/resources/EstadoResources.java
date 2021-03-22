@@ -23,11 +23,11 @@ public class EstadoResources{
 	public ResponseEntity<?>find(@PathVariable Long id) throws ObjectNotFoundException{
 		Estado obj=service.buscar(id);
 		return ResponseEntity.ok().body(obj);    
-	    
-		}
-	
+
 	}
-	
+
+}
+
 
 
 

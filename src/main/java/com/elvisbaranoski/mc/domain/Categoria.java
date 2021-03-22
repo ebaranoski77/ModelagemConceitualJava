@@ -19,26 +19,31 @@ import lombok.ToString;
 
 @Getter
 @Setter
-/*@EqualsAndHashCode*/
 @NoArgsConstructor
-/*@AllArgsConstructor*/
 @ToString
 @Entity
 public class Categoria implements Serializable{
 	private static final long serialVersionUID= 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	
+
 	private Long id;
 	private String nome;
+
+	/*Associação com produto*/
+	//serialização ciclica tratamento
+	@JsonManagedReference
+	@ManyToMany(mappedBy="categorias")
+	private List<Produto> produtos = new ArrayList<>();
+
 	
 	public Categoria(Long id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
 	}
-	
+
 
 
 	@Override
@@ -66,9 +71,4 @@ public class Categoria implements Serializable{
 		return true;
 	}
 
-	/*Associação com produto*/
-	
-	@JsonManagedReference
-	@ManyToMany(mappedBy="categorias")
-	private List<Produto> produtos = new ArrayList<>();
 }

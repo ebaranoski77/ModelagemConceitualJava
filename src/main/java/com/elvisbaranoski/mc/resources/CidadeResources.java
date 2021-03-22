@@ -23,11 +23,11 @@ public class CidadeResources{
 	public ResponseEntity<?>find(@PathVariable Long id) throws ObjectNotFoundException{
 		Cidade obj=service.buscar(id);
 		return ResponseEntity.ok().body(obj);    
-	    
-		}
-	
+
 	}
-	
+
+}
+
 
 
 

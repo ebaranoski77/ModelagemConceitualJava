@@ -23,11 +23,11 @@ public class ClienteResources{
 	public ResponseEntity<?>find(@PathVariable Long id) throws ObjectNotFoundException{
 		Cliente obj=service.buscar(id);
 		return ResponseEntity.ok().body(obj);    
-	    
-		}
-	
+
 	}
-	
+
+}
+
 
 
 

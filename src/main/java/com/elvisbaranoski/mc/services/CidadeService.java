@@ -13,13 +13,13 @@ import javassist.tools.rmi.ObjectNotFoundException;
 public class CidadeService {
 	@Autowired
 	private CidadeRepository repository;
-	
+
 	public Cidade buscar(Long id) throws ObjectNotFoundException  {
 		Optional<Cidade> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cidade.class.getName()));
-		}
-	
-	
+	}
+
+
 
 }

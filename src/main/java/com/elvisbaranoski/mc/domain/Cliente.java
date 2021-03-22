@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.elvisbaranoski.mc.domain.enuns.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.NoArgsConstructor;
@@ -25,9 +26,8 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Cliente implements Serializable{
-	
-
 	private static final long serialVersionUID= 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -35,14 +35,14 @@ public class Cliente implements Serializable{
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
-	
-	
+
+
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos= new ArrayList<>();
-	
-	
-	
+
+
+
 	/* Associação(entidade fraca)- optado fazer uma coleção pois telefone teria só um atributo
 	 *  e não aceitara repetição de telefone*/
 
@@ -51,10 +51,11 @@ public class Cliente implements Serializable{
 	@CollectionTable(name ="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos= new ArrayList<>();
-	
-		
+
+
 	public Cliente(Long id, String nome, String email,String cpfOuCnpj, TipoCliente tipo) {
 		super();
 		this.id = id;
@@ -62,9 +63,9 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = tipo.getCod();
-		
+
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -98,11 +99,11 @@ public class Cliente implements Serializable{
 
 	public TipoCliente getTipo() {
 		return TipoCliente.toEnum(tipo);
-		}
-	
-		public void setTipo(TipoCliente tipo) {
+	}
+
+	public void setTipo(TipoCliente tipo) {
 		this.tipo = tipo.getCod();
-		}
+	}
 
 	public List<Endereco> getEnderecos() {
 		return enderecos;
@@ -126,9 +127,9 @@ public class Cliente implements Serializable{
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
-	
+
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
